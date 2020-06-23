@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import NavBar from '../components/navbar'
-import Net from '../net/net'
+import NavBar from '../components/NavBar'
+import Net from '../net/Net'
 
 export default class ProfilePage extends Component {
 

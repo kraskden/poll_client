@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import Field from '../model/field';
+import Field from '../model/Field';
 
-import Net from '../net/net'
+import Net from '../net/Net'
 
 
 // props.field
@@ -18,11 +18,13 @@ export default class FieldForm extends Component {
 
     submitHandler = (e) => {
         e.preventDefault();
+
+        let optionsString = this.optionRef.current.value
         let newField = new Field(
             0,
             this.labelRef.current.value, 
             this.typeRef.current.value,
-            this.optionRef.current.value.split('\n'),
+            optionsString === "" ? [] : optionsString.split('\n'),
             this.isRequiredRef.current.checked,
             this.isEnabledRef.current.checked
         );

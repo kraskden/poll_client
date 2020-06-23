@@ -1,7 +1,6 @@
-import NamedTable from "../components/table";
-import Field from "../model/field";
+import Field from "../model/Field";
 
-import NetUtil from './util'
+import NetUtil from './NetUtil'
 
 let Net = {}
 
@@ -137,6 +136,16 @@ Net.addField = async (field) => {
 Net.deleteField = async (id) => {
     let res = await Net.authGetReq(`/fields/delete/${id}`, "DELETE")
     return await res.text()
+}
+
+Net.getPolls = async () => {
+    let res = await Net.authGetReq('/poll/all')
+    return await res.json()
+}
+
+Net.getAnswers = async (pollId) => {
+    let res = await Net.authGetReq(`/vote/${pollId}/all`)
+    return await res.json()
 }
 
 export default Net;

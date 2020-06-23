@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import Net from '../net/net'
+import Net from '../net/Net'
 
 // todo: phone input
 

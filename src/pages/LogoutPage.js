@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Net from '../net/net';
+import Net from '../net/Net';
 
 export default class LogoutPage extends Component {
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import Net from '../net/net'
+import Net from '../net/Net'
 import { Link } from 'react-router-dom'
 
 export default class LoginPage extends Component {

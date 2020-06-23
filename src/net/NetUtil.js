@@ -1,4 +1,4 @@
-import Field from '../model/field'
+import Field from '../model/Field'
 
 let NetUtil = {}
 

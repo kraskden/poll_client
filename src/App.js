@@ -7,16 +7,18 @@ import {
 } from 'react-router-dom'
 
 
-import LoginPage from './pages/login'
-import SignupPage from './pages/signup'
-import ProfilePage from './pages/profile'
-import PassChangePage from './pages/pass_change'
+import LoginPage from './pages/LoginPage'
+import SignupPage from './pages/SignupPage'
+import ProfilePage from './pages/ProfilePage'
+import PassChangePage from './pages/PassChangePage'
 
-import NavBar from './components/navbar'
-import FieldsPage from './pages/fields'
+import NavBar from './components/NavBar'
+import FieldsPage from './pages/FieldsPage'
 
-import Net from './net/net'
-import LogoutPage from './pages/logout'
+import Net from './net/Net'
+import LogoutPage from './pages/LogoutPage'
+import ResponcesPage from './pages/ResponcesPage'
+import ResponcesView from './components/ResponcesView'
 
 export default class App extends Component {
 
@@ -92,6 +94,12 @@ export default class App extends Component {
                     <Route exact path="/logout" children={ (props) => 
                         <LogoutPage onUserChange={this.onUserChange} history={props.history} />
                     } />
+
+                    <Route exact path="/responces">
+                        <ResponcesPage user={this.state.user} />
+                    </Route>
+
+                    
 
                 </Switch>
             </Router>

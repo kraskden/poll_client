@@ -27,6 +27,7 @@ export default function Pagination(props) {
 
     function onPageChange(newPage) {
         console.log(newPage);   
+        props.onChange(newPage)
     }
 
     let startArrow = makeArrow(isFirst, "<<", () => onPageChange(1));

@@ -16,9 +16,9 @@ export default class NamedTable extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {this.props.items.map((item) => 
-                        <tr>
-                            {keys.map((key) => <td key={item[key]}>{item[key]}</td>)}
+                    {this.props.items.map((item, idx) => 
+                        <tr key={idx}>
+                            {this.props.names.map((name, idx) => <td key={idx}>{item[name] ? item[name] : "N/A"}</td>)}
                         </tr>
                     )}
                 </tbody>

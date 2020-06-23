@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import Field from '../model/field'
+import Field from '../model/Field'
 
-import Net from '../net/net'
+import Net from '../net/Net'
 
 // props.items
 export default class FieldTable extends Component {
