@@ -45,16 +45,10 @@ export default class NavBar extends Component {
 
 
     render() {
-        
-        return (
-            <nav className="navbar navbar-expand-md navbar-light bg-light">
-            <Link to="/" className="navbar-brand">
-                <img src="logo.png" alt="logo" height="30" loading="lazy" />
-            </Link>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-            </button>
 
+        let urls = <> </>
+        if (this.props.user) {
+            urls =             
             <div className="collapse navbar-collapse flex-row-reverse mr-4" id="navbarSupportedContent">   
                 <ul class="navbar-nav">
                     <li class="nav-item px-4">
@@ -65,6 +59,18 @@ export default class NavBar extends Component {
                     </li>
                 </ul>
             </div>
+        }
+        
+        return (
+            <nav className="navbar navbar-expand-md navbar-light bg-light">
+            <Link to="/" className="navbar-brand">
+                <img src="logo.png" alt="logo" height="30" loading="lazy" />
+            </Link>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+            </button>
+
+            {urls}
 
             <ul className="navbar-nav ml-auto">
                 <li className="nav-item dropdown">

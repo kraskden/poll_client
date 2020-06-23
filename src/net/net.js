@@ -1,3 +1,6 @@
+import NamedTable from "../components/table";
+import Field from "../model/field";
+
 let Net = {}
 
 const SERVER_PATH = "http://localhost:4000/api"
@@ -108,6 +111,31 @@ Net.changePassword = async (curr, updated) =>  {
     let res = await Net.authPostReq("/profile/passChange", req);
     let text = await res.text()
     return text
+}
+
+Net.getFields = async () => {
+    let res = await Net.authGetReq("/fields/")
+    let rawFields = (await res.json()).fields;
+    
+    function convertType(rawType) {
+        switch (rawType) {
+            case "SINGLE_TEXT":
+                return "text";
+            case "MULTI_TEXT":
+                return "multitext"
+            default:
+                return rawType.toLowerCase()
+        }
+    }
+
+    return rawFields.map((f) => new Field(
+        f.id,
+        f.name,
+        convertType(f.fieldType),
+        f.properties,
+        f.isRequired,
+        f.isEnabled
+    ))
 }
 
 export default Net;

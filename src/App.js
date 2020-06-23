@@ -69,9 +69,9 @@ export default class App extends Component {
                         </div>
                     </Route>
 
-                    <Route exact path="/fields">
-                        <FieldsPage />
-                    </Route>
+                    <Route exact path="/fields" children={ (props) =>
+                        <FieldsPage user={this.state.user} history={props.history}/>
+                    } />
 
                     <Route exact path="/profile" children={(props) => 
                         <ProfilePage user={this.state.user} onUserChange={this.onUserChange} history={props.history}/>

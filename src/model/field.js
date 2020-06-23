@@ -9,12 +9,17 @@ export default class Field {
         date: "Date"
     }
 
-    constructor(label = "", type = "text", option = [], isRequired = true, isEnabled = true) {
+    constructor(id = 0, label = "", type = "text", properties = [], isRequired = true, isEnabled = true) {
+        this.id = id;
         this.label = label;
         this.type = type;
-        this.option = option;
+        this.properties = properties;
         this.isRequired = isRequired;
         this.isEnabled = isEnabled;
+    }
+
+    static constructEmpty() {
+        return new Field()
     }
 
 }

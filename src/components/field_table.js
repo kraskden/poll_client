@@ -5,13 +5,12 @@ import Field from '../model/field'
 export default class FieldTable extends Component {
 
     onItemEdit = (item) => {
-        console.log(item)
+        this.props.onSelected(item)
     }
 
     render() {
 
         let items = this.props.items.map((item, idx) => {
-            console.log(item)
             return (
                 <tr key={idx} >
                     <td>{item.label}</td>
@@ -19,7 +18,10 @@ export default class FieldTable extends Component {
                     <td>{item.isRequired.toString()}</td>
                     <td>{item.isEnabled.toString()}
                         <div style={{float: "right"}}>
-                                <span class="oi oi-pencil mr-2 text-right" onClick={() => this.onItemEdit(item)}></span>
+                                <span class="oi oi-pencil mr-2 text-right" 
+                                data-toggle="modal"
+                                data-target="#AddFieldModal"
+                                onClick={() => this.onItemEdit(item)}></span>
                                 <span class="oi oi-trash"></span>
                         </div>
                     </td>

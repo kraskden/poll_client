@@ -26,8 +26,18 @@ export default class FieldForm extends Component {
         console.log(newField);
     }
 
+
     render() {
-        let field = this.props.field || new Field()
+        let field = this.props.field || Field.constructEmpty()
+        console.log(field)
+
+        let typeSelectOptions = Object.keys(Field.typeNames).map(fieldName => {
+            if (fieldName === field.type) {
+                return  <option value={fieldName} selected>{Field.typeNames[fieldName]}</option>
+            } else {
+                return <option value={fieldName}>{Field.typeNames[fieldName]}</option>
+            }
+        })
 
         return (
             <form
@@ -66,12 +76,13 @@ export default class FieldForm extends Component {
                     <label for="inputType" class="col-sm-3 col-form-label">Type</label>
                     <div class="col-sm-9">
                         <select class="custom-select" id="inputType" defaultValue={field.type} ref={this.typeRef}>
-                            <option value="text">Single line text</option>
+                            {/* <option value="text">Single line text</option>
                             <option value="multitext">Multi line text</option>
                             <option value="radio">Radio Button</option>
                             <option value="checkbox">Checkbox</option>
                             <option value="combobox">Combobox</option>
-                            <option value="date">Date</option>
+                            <option value="date">Date</option> */}
+                            {typeSelectOptions}
                         </select>
                     </div>
                 </div>
@@ -79,7 +90,7 @@ export default class FieldForm extends Component {
                 <div class="form-group row">
                     <label for="inputOptions" class="col-sm-3 col-form-label">Options</label>
                     <div class="col-sm-9">
-                        <textarea className="form-control" rows="4" id="inputOptions" defaultValue={field.option.join('\n')} ref={this.optionRef}></textarea>
+                        <textarea className="form-control" rows="4" id="inputOptions" defaultValue={field.properties.join('\n')} ref={this.optionRef}></textarea>
                     </div>
                 </div>
     

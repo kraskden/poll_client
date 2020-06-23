@@ -7,6 +7,7 @@ import FieldForm from '../components/field_form'
 import Field from '../model/field'
 import FieldTable from '../components/field_table'
 
+import Net from '../net/net'
 
 function Table(props) {
     return (
@@ -38,20 +39,48 @@ function Table(props) {
 
 export default class FieldsPage extends Component {
 
+    constructor(props) {
+        super(props)
+        this.state = {
+            fields: [],
+            formField: null
+        }
+    }
+
+    componentDidMount() {
+        this.loadFields()
+    }
+
+    loadFields = () => {
+        Net.getFields().then((fields) => {
+            this.setState({
+                fields: fields
+            })
+        }).catch(ex => {
+            this.props.history.replace('/login')
+        })
+    }
+
+    onFieldsChanged = () => {
+        this.loadFields()
+    }
+
+    onFieldSelected = (field) => {
+        this.setState({
+            formField: field
+        })
+    }
+
     render() {
-        let fields = [
-            new Field("fasdf", "text"), 
-            new Field("foodfasdg", "radio"), 
-            new Field("sag msadna sand ad ", "checkbox"),
-        ]
 
         return (
             <div className="container">
-                <NavBar user="Fizzika" />
+                <NavBar user={this.props.user} />
                 <div className="card w-100 mt-3">
                     <div className="card-header ">
                         <p className="h4 float-left mb-0">Fields</p>
                         <button 
+                        onClick={() => this.setState({formField: null})}
                         className="btn btn-primary btn-sm float-right"
                         data-toggle="modal"
                         data-target="#AddFieldModal"
@@ -66,11 +95,11 @@ export default class FieldsPage extends Component {
                         aria-hidden="true"
                         >
                         <div className="modal-dialog" role="document">
-                            <FieldForm />
+                            <FieldForm field={this.state.formField}/>
                         </div>
                     </div>
                     <div className="card-body pt-0">
-                        <FieldTable items={fields} />
+                        <FieldTable items={this.state.fields} onSelected={this.onFieldSelected}/>
                     </div>
                 </div>
                 {/* <br></br>
