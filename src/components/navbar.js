@@ -2,10 +2,33 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 function DropdownItem(props) {
+    if (props.user == null) {
+        return (
+            <>
+                <a className="nav-link dropdown-toggle" href="/#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Action
+                </a>
+
+                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <Link to="/login" className="dropdown-item">Log In</Link>
+                    <Link to="/signup" className="dropdown-item">Sign Up</Link>
+                </div>
+            </>
+        )
+    }
+
+    let user = props.user;
+    let name = user.email;
+    if (user.firstName || user.lastName) {
+        let firstName = user.firstName || ""
+        let lastName = user.lastName || ""
+        name = `${firstName} ${lastName}`
+    }
+
     return (
         <>
             <a className="nav-link dropdown-toggle" href="/#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {props.user}
+            {name}
             </a>
 
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -17,17 +40,9 @@ function DropdownItem(props) {
     )
 }
 
-function MakeDropdown(props) {
-    return (
-        <ul className="navbar-nav ml-auto">
-            <li className="nav-item dropdown">
-                <DropdownItem user={props.user} />
-            </li>
-        </ul>
-    )
-}
 
 export default class NavBar extends Component {
+
 
     render() {
         
@@ -51,7 +66,11 @@ export default class NavBar extends Component {
                 </ul>
             </div>
 
-            <MakeDropdown user={this.props.user} />
+            <ul className="navbar-nav ml-auto">
+                <li className="nav-item dropdown">
+                    <DropdownItem user={this.props.user} />
+                </li>
+            </ul>
 
             </nav>
         )

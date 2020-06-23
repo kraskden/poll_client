@@ -15,14 +15,55 @@ import PassChangePage from './pages/pass_change'
 import NavBar from './components/navbar'
 import FieldsPage from './pages/fields'
 
+import Net from './net/net'
+import LogoutPage from './pages/logout'
+
 export default class App extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            user: null,
+            isLoaded: false
+        }
+    }
+
+    componentDidMount() {
+        this.loadUser();
+        this.setState({
+            isLoaded: true
+        })
+        console.log(this.state.user);
+    }
+
+    loadUser = () => {
+        Net.getProfileInfo().then((user) => {
+            this.setState({
+                user: user
+            })
+        }).catch(() => {
+            this.setState({
+                user: null
+            })
+            console.log("User not loaded")
+        })
+    }
+
+    onUserChange = () => {
+        this.loadUser();
+    }
+
     render() {
+        if (!this.state.isLoaded) {
+            return <> </>;
+        }
+        
         return (
             <Router>
                 <Switch>
                     <Route exact path="/">
                         <div className="container">
-                            <NavBar user="Fizzika" />
+                            <NavBar user={this.state.user} />
                         </div>
                     </Route>
 
@@ -31,17 +72,25 @@ export default class App extends Component {
                     </Route>
 
                     <Route exact path="/profile">
-                        <ProfilePage user="Fizzika" />
+                        <ProfilePage user={this.state.user} />
                     </Route>
+
                     <Route exact path="/setPassword">
-                        <PassChangePage user="Fizzika" />2
+                        <PassChangePage user={this.state.user} />
                     </Route>
-                    <Route exact path="/login">
-                        <LoginPage />
-                    </Route>
-                    <Route exact path="/signup">
-                        <SignupPage />
-                    </Route>
+
+                    <Route exact path="/login" children={ (props) =>
+                        <LoginPage onLogin={this.onUserChange} history={props.history} />
+                    } />
+
+                    <Route exact path="/signup" children={(props) => 
+                        <SignupPage onUserChange={this.onUserChange} history={props.history}/>
+                    } />
+
+                    <Route exact path="/logout" children={ (props) => 
+                        <LogoutPage onUserChange={this.onUserChange} history={props.history} />
+                    } />
+
                 </Switch>
             </Router>
         )
