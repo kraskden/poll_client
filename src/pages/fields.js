@@ -95,11 +95,11 @@ export default class FieldsPage extends Component {
                         aria-hidden="true"
                         >
                         <div className="modal-dialog" role="document">
-                            <FieldForm field={this.state.formField}/>
+                            <FieldForm field={this.state.formField} onChanged={this.onFieldsChanged}/>
                         </div>
                     </div>
                     <div className="card-body pt-0">
-                        <FieldTable items={this.state.fields} onSelected={this.onFieldSelected}/>
+                        <FieldTable items={this.state.fields} onSelected={this.onFieldSelected} onChanged={this.onFieldsChanged}/>
                     </div>
                 </div>
                 {/* <br></br>

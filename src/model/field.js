@@ -3,7 +3,7 @@ export default class Field {
     static typeNames = {
         text: "Single line text",
         multitext: "Multi line text",
-        radio: "Radiobox",
+        radio: "Radio button",
         combobox: "Combobox",
         checkbox: "Checkbox",
         date: "Date"

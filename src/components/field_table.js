@@ -1,11 +1,20 @@
 import React, { Component } from 'react'
 import Field from '../model/field'
 
+import Net from '../net/net'
+
 // props.items
 export default class FieldTable extends Component {
 
     onItemEdit = (item) => {
         this.props.onSelected(item)
+        // Continue edit on FieldForm
+    }
+
+    onItemDelete = (item) => {
+        Net.deleteField(item.id).then(() => {
+            this.props.onChanged()
+        })
     }
 
     render() {
@@ -18,11 +27,13 @@ export default class FieldTable extends Component {
                     <td>{item.isRequired.toString()}</td>
                     <td>{item.isEnabled.toString()}
                         <div style={{float: "right"}}>
-                                <span class="oi oi-pencil mr-2 text-right" 
+                                <span class="oi oi-pencil mr-4 text-right" 
                                 data-toggle="modal"
                                 data-target="#AddFieldModal"
                                 onClick={() => this.onItemEdit(item)}></span>
-                                <span class="oi oi-trash"></span>
+                                <span class="oi oi-trash"
+                                onClick={() => this.onItemDelete(item)}
+                                ></span>
                         </div>
                     </td>
                 </tr>

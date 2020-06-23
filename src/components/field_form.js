@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Field from '../model/field';
 
+import Net from '../net/net'
+
 
 // props.field
 export default class FieldForm extends Component {
@@ -17,19 +19,28 @@ export default class FieldForm extends Component {
     submitHandler = (e) => {
         e.preventDefault();
         let newField = new Field(
+            0,
             this.labelRef.current.value, 
             this.typeRef.current.value,
             this.optionRef.current.value.split('\n'),
-            this.isRequiredRef.current.value,
-            this.isEnabledRef.current.value
+            this.isRequiredRef.current.checked,
+            this.isEnabledRef.current.checked
         );
-        console.log(newField);
+        
+        let oldField = this.props.field;
+        let promiseCall = oldField ? () => Net.updateField(oldField.id, newField) : () => Net.addField(newField)
+        promiseCall().then(() => {
+            this.props.onChanged()
+        }).catch(() => {
+            console.log("Error updating")
+        }).finally(() => {
+            document.getElementById("btn-close").click() //close modal form
+        })
     }
 
 
     render() {
         let field = this.props.field || Field.constructEmpty()
-        console.log(field)
 
         let typeSelectOptions = Object.keys(Field.typeNames).map(fieldName => {
             if (fieldName === field.type) {
@@ -76,12 +87,6 @@ export default class FieldForm extends Component {
                     <label for="inputType" class="col-sm-3 col-form-label">Type</label>
                     <div class="col-sm-9">
                         <select class="custom-select" id="inputType" defaultValue={field.type} ref={this.typeRef}>
-                            {/* <option value="text">Single line text</option>
-                            <option value="multitext">Multi line text</option>
-                            <option value="radio">Radio Button</option>
-                            <option value="checkbox">Checkbox</option>
-                            <option value="combobox">Combobox</option>
-                            <option value="date">Date</option> */}
                             {typeSelectOptions}
                         </select>
                     </div>

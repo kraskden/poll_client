@@ -1,12 +1,14 @@
 import NamedTable from "../components/table";
 import Field from "../model/field";
 
+import NetUtil from './util'
+
 let Net = {}
 
 const SERVER_PATH = "http://localhost:4000/api"
 const TOKEN_KEY = "QUEST_JWT"
 
-Net.authGetReq = async (url) => {
+Net.authGetReq = async (url, method = "GET") => {
     let token = localStorage.getItem(TOKEN_KEY);
     if (!token) {
         return Promise.reject();
@@ -15,7 +17,8 @@ Net.authGetReq = async (url) => {
     return fetch(`${SERVER_PATH}${url}`, {
         headers: {
             "Authorization": `Bearer:${token}`
-        }
+        },
+        method: method
     }).then((res) => {
         if (res.status !== 200) {
             return Promise.reject(res.status);
@@ -116,26 +119,24 @@ Net.changePassword = async (curr, updated) =>  {
 Net.getFields = async () => {
     let res = await Net.authGetReq("/fields/")
     let rawFields = (await res.json()).fields;
-    
-    function convertType(rawType) {
-        switch (rawType) {
-            case "SINGLE_TEXT":
-                return "text";
-            case "MULTI_TEXT":
-                return "multitext"
-            default:
-                return rawType.toLowerCase()
-        }
-    }
 
-    return rawFields.map((f) => new Field(
-        f.id,
-        f.name,
-        convertType(f.fieldType),
-        f.properties,
-        f.isRequired,
-        f.isEnabled
-    ))
+    return rawFields.map(f => NetUtil.convertRawToField(f))
+}
+
+Net.updateField = async (id, field) => {
+    let res = await Net.authPostReq(`/fields/update/${id}`, NetUtil.converFieldToRaw(field))
+    let text = await res.text()
+    return text;
+}
+
+Net.addField = async (field) => {
+    let res = await Net.authPostReq('/fields/add', NetUtil.converFieldToRaw(field))
+    return await res.text()
+}
+
+Net.deleteField = async (id) => {
+    let res = await Net.authGetReq(`/fields/delete/${id}`, "DELETE")
+    return await res.text()
 }
 
 export default Net;
