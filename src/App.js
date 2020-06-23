@@ -29,15 +29,17 @@ export default class App extends Component {
     }
 
     componentDidMount() {
-        this.loadUser();
-        this.setState({
-            isLoaded: true
+        this.loadUser().then(() => {
+            this.setState({
+                isLoaded: true
+            })
         })
+
         console.log(this.state.user);
     }
 
-    loadUser = () => {
-        Net.getProfileInfo().then((user) => {
+    loadUser = async () => {
+        return Net.getProfileInfo().then((user) => {
             this.setState({
                 user: user
             })
@@ -71,9 +73,9 @@ export default class App extends Component {
                         <FieldsPage />
                     </Route>
 
-                    <Route exact path="/profile">
-                        <ProfilePage user={this.state.user} />
-                    </Route>
+                    <Route exact path="/profile" children={(props) => 
+                        <ProfilePage user={this.state.user} onUserChange={this.onUserChange} history={props.history}/>
+                    }/>
 
                     <Route exact path="/setPassword">
                         <PassChangePage user={this.state.user} />

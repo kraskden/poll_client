@@ -44,6 +44,29 @@ Net.postReq = async (url, body) => {
     })
 }
 
+Net.authPostReq = async (url, body) => {
+
+    let token = localStorage.getItem(TOKEN_KEY);
+    if (!token) {
+        return Promise.reject();
+    }
+
+    return fetch(`${SERVER_PATH}${url}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer:${token}`
+        },
+        body: JSON.stringify(body)
+    }).then((res) => {
+        if (res.status !== 200) {
+            return Promise.reject(res.status);
+        } else {
+            return res;
+        }
+    })
+}
+
 
 Net.getProfileInfo = async () => {
     let res = await Net.authGetReq("/profile/");
@@ -66,8 +89,25 @@ Net.logout = () => {
 
 Net.signUp = async (signUpReq) => {
     let res = await Net.postReq("/auth/register", signUpReq);
-    let text =  res.text()
+    let text = await res.text()
     return text;
+}
+
+Net.updateProfile = async (updateReq) => {
+    let res = await Net.authPostReq("/profile/update", updateReq);
+    let text = await res.text()
+    return text
+}
+
+Net.changePassword = async (curr, updated) =>  {
+    let req = {
+        current: curr,
+        updated: updated
+    }
+
+    let res = await Net.authPostReq("/profile/passChange", req);
+    let text = await res.text()
+    return text
 }
 
 export default Net;
