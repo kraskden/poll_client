@@ -1,5 +1,3 @@
-import Field from "../model/Field";
-
 import NetUtil from './NetUtil'
 
 let Net = {}
@@ -146,6 +144,19 @@ Net.getPolls = async () => {
 Net.getAnswers = async (pollId) => {
     let res = await Net.authGetReq(`/vote/${pollId}/all`)
     return await res.json()
+}
+
+Net.getPollFields = async (pollId) => {
+    let res = await Net.getReq(`/fields/poll/${pollId}`)
+    let rawFields =  (await res.json()).fields
+    let fields = rawFields.map((rawField) => NetUtil.convertRawToField(rawField))
+    console.log(fields)
+    return fields
+}
+
+Net.submitAnswer = async (pollId, answer) => {
+    let res = await Net.postReq(`/vote/add/${pollId}`, answer)
+    return await res.text()
 }
 
 export default Net;

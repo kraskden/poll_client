@@ -47,26 +47,26 @@ export default class ProfilePage extends Component {
                 <NavBar user={user}/>
                 <div className="row justify-content-center">
                     <div className="card mt-4">
-                        <div class="card-header h5">
+                        <div className="card-header h5">
                             Edit Profile
                         </div>
-                        <div class="card-body">
+                        <div className="card-body">
                             <form onSubmit={this.onSubmit}>
-                                <div class="form-group row px-3">
-                                    <label for="firstName">First name</label>
-                                    <input type="text" class="form-control" id="firstName" ref={this.firstName} defaultValue={user.firstName} />
+                                <div className="form-group row px-3">
+                                    <label htmlFor="firstName">First name</label>
+                                    <input type="text" className="form-control" id="firstName" ref={this.firstName} defaultValue={user.firstName} />
                                 </div>
-                                <div class="form-group row px-3">
-                                    <label for="secondName">Last name</label>
-                                    <input type="text" class="form-control" id="secondName" ref={this.lastName} defaultValue={user.lastName} />
+                                <div className="form-group row px-3">
+                                    <label htmlFor="secondName">Last name</label>
+                                    <input type="text" className="form-control" id="secondName" ref={this.lastName} defaultValue={user.lastName} />
                                 </div>
-                                <div class="form-group row px-3">
-                                    <label for="email">Email<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="email" ref={this.email} defaultValue={user.email} required/>
+                                <div className="form-group row px-3">
+                                    <label htmlFor="email">Email<span className="text-danger">*</span></label>
+                                    <input type="text" className="form-control" id="email" ref={this.email} defaultValue={user.email} required/>
                                 </div>
-                                <div class="form-group row px-3">
-                                    <label for="number">Phone Number</label>
-                                    <input type="text" class="form-control" id="number" ref={this.phone} defaultValue={user.phone}/>
+                                <div className="form-group row px-3">
+                                    <label htmlFor="number">Phone Number</label>
+                                    <input type="text" className="form-control" id="number" ref={this.phone} defaultValue={user.phone}/>
                                 </div>
                                 <button type="submit" className="btn btn-primary px-5">Save</button>
                             </form>

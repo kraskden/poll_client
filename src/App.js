@@ -18,7 +18,7 @@ import FieldsPage from './pages/FieldsPage'
 import Net from './net/Net'
 import LogoutPage from './pages/LogoutPage'
 import ResponcesPage from './pages/ResponcesPage'
-import ResponcesView from './components/ResponcesView'
+import VotePage from './pages/VotePage'
 
 export default class App extends Component {
 
@@ -36,8 +36,6 @@ export default class App extends Component {
                 isLoaded: true
             })
         })
-
-        console.log(this.state.user);
     }
 
     loadUser = async () => {
@@ -99,7 +97,9 @@ export default class App extends Component {
                         <ResponcesPage user={this.state.user} />
                     </Route>
 
-                    
+                    <Route path="/quest/:id" children={ (props) => 
+                        <VotePage id={props.match.params.id} user={this.state.user} />
+                    }  />
 
                 </Switch>
             </Router>

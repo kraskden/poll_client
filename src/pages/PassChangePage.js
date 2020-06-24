@@ -41,22 +41,22 @@ export default class PassChangePage extends Component {
                 <NavBar user={this.props.user}/>
                 <div className="row justify-content-center">
                     <div className="card mt-4">
-                        <div class="card-header h5">
+                        <div className="card-header h5">
                             Change Password
                         </div>
-                        <div class="card-body">
+                        <div className="card-body">
                             <form action="" onSubmit={this.onSumbit}>
-                                <div class="form-group row px-3">
-                                    <label for="currPass">Current Password<span class="text-danger">*</span></label>
-                                    <input type="password" class="form-control" id="currPass" ref={this.currPassword} required/>
+                                <div className="form-group row px-3">
+                                    <label htmlFor="currPass">Current Password<span className="text-danger">*</span></label>
+                                    <input type="password" className="form-control" id="currPass" ref={this.currPassword} required/>
                                 </div>
-                                <div class="form-group row px-3">
-                                    <label for="newPass">New Password<span class="text-danger">*</span></label>
-                                    <input type="password" class="form-control" id="newPass" ref={this.newPassword} required/>
+                                <div className="form-group row px-3">
+                                    <label htmlFor="newPass">New Password<span className="text-danger">*</span></label>
+                                    <input type="password" className="form-control" id="newPass" ref={this.newPassword} required/>
                                 </div>
-                                <div class="form-group row px-3">
-                                    <label for="newConfPass">Confirm New Password<span class="text-danger">*</span></label>
-                                    <input type="password" class="form-control" id="newConfPass" ref={this.confirmNewPass} required/>
+                                <div className="form-group row px-3">
+                                    <label htmlFor="newConfPass">Confirm New Password<span className="text-danger">*</span></label>
+                                    <input type="password" className="form-control" id="newConfPass" ref={this.confirmNewPass} required/>
                                 </div>
                                 <button type="submit" className="btn btn-primary px-3">CHANGE</button>
                             </form>

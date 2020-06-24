@@ -56,9 +56,9 @@ export default class FieldsPage extends Component {
                         >ADD FIELD</button>
                     </div>
                     <div
-                        class="modal fade"
+                        className="modal fade"
                         id="AddFieldModal"
-                        tabindex="-1"
+                        tabIndex="-1"
                         role="dialog"
                         aria-labelledby="AddFieldModalLabel"
                         aria-hidden="true"

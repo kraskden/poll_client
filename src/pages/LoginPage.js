@@ -44,7 +44,7 @@ export default class LoginPage extends Component {
                                 <input type="email" id="inputLogin" ref={this.email} name="login" className="form-control mb-2" placeholder="Email" required autoFocus />
                             <label htmlFor="inputPassword" className="sr-only">Password</label>
                             <input type="password" id="inputPassword" ref={this.password} name="password" className="form-control mb-2" placeholder="Password" required />
-                            <div class="checkbox row ml-1">
+                            <div className="checkbox row ml-1">
                                 <label>
                                     <input type="checkbox" value="remember-me" className="" /> Remember me
                                 </label>

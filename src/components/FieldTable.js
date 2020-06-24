@@ -27,11 +27,11 @@ export default class FieldTable extends Component {
                     <td>{item.isRequired.toString()}</td>
                     <td>{item.isEnabled.toString()}
                         <div style={{float: "right"}}>
-                                <span class="oi oi-pencil mr-4 text-right" 
+                                <span className="oi oi-pencil mr-4 text-right" 
                                 data-toggle="modal"
                                 data-target="#AddFieldModal"
                                 onClick={() => this.onItemEdit(item)}></span>
-                                <span class="oi oi-trash"
+                                <span className="oi oi-trash"
                                 onClick={() => this.onItemDelete(item)}
                                 ></span>
                         </div>
@@ -41,7 +41,7 @@ export default class FieldTable extends Component {
         })
 
         return (
-            <table class="table table-striped">
+            <table className="table table-striped">
                 <thead>
                     <tr>
                     <th scope="col">Label</th>

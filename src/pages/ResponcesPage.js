@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Net from '../net/Net'
 import ResponcesView from '../components/ResponcesView'
 import NavBar from '../components/NavBar'
+import { Link } from 'react-router-dom'
 
 
 export default class ResponcesPage extends Component {
@@ -79,7 +80,6 @@ export default class ResponcesPage extends Component {
         }
 
         let items = this.state.pollAnswers[this.state.currPollKey];
-        console.log(items)
         items = items === undefined ? [] : items;
 
         return (
@@ -87,7 +87,7 @@ export default class ResponcesPage extends Component {
                 <NavBar user={this.props.user} />
                 <div className="card w-100 mt-3">
                     <div className="card-header ">
-                        <p className="h4 float-left mb-0">Responses</p>
+                        <p className="h4 float-left mb-0">Responses to <Link to={`/quest/${this.props.user.id}`}>quest</Link></p>
                     </div>
                     <div className="card-body pt-0">
                         <ResponcesView

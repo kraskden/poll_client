@@ -50,11 +50,11 @@ export default class NavBar extends Component {
         if (this.props.user) {
             urls =             
             <div className="collapse navbar-collapse flex-row-reverse mr-4" id="navbarSupportedContent">   
-                <ul class="navbar-nav">
-                    <li class="nav-item px-4">
+                <ul className="navbar-nav">
+                    <li className="nav-item px-4">
                         <Link to="/fields" className="nav-link font-weight-bold">Fields</Link>
                     </li>
-                    <li class="nav-item px-4">
+                    <li className="nav-item px-4">
                         <Link to="/responces" className="nav-link font-weight-bold">Responces</Link> 
                     </li>
                 </ul>
@@ -64,7 +64,7 @@ export default class NavBar extends Component {
         return (
             <nav className="navbar navbar-expand-md navbar-light bg-light">
             <Link to="/" className="navbar-brand">
-                <img src="logo.png" alt="logo" height="30" loading="lazy" />
+                <img src="/logo.png" alt="logo" height="30" loading="lazy" />
             </Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>

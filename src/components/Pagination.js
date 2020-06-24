@@ -12,15 +12,15 @@ export default function Pagination(props) {
     function makeArrow(isDisabled, text, onClick) {
         return isDisabled ? 
             <li className="page-item disabled">
-            <a className="page-link" href="#" aria-label="Previous" tabindex="-1" aria-disabled="true" onClick={onClick}>
+            <button className="page-link" aria-label="Previous" tabIndex="-1" aria-disabled="true" onClick={onClick}>
                 <span aria-hidden="true">{text}</span>
-            </a>
+            </button>
             </li> 
             : 
             <li className="page-item">
-                <a className="page-link" href="#" aria-label="Previous" onClick={onClick}>
+                <button className="page-link" aria-label="Previous" onClick={onClick}>
                     <span aria-hidden="true">{text}</span>
-                </a>
+                </button>
             </li>
     } 
 
@@ -37,10 +37,10 @@ export default function Pagination(props) {
 
     return (
         <nav aria-label="Table pagination">
-            <ul class="pagination">
+            <ul className="pagination">
                 {startArrow}
                 {leftArrow}
-                <li class="page-item"><a class="page-link" href="#">{props.page}</a></li>
+                <li className="page-item"><button className="page-link" >{props.page}</button></li>
                 {rightArrow}
                 {endArrow}
             </ul>

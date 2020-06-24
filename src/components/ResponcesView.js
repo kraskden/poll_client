@@ -35,6 +35,10 @@ export default class ResponcesView extends Component {
     }
 
     render() {
+        if (this.props.polls.length === 0) {
+            return null
+        }
+
         let itemsSize = this.props.items.length;
 
         let startIdx = (this.state.page - 1) * ResponcesView.pageSize;
@@ -49,7 +53,7 @@ export default class ResponcesView extends Component {
 
         return (
             <>
-                <NamedTable items={items} names={activePoll.fields}/>
+                <NamedTable items={items} fields={activePoll.fields}/>
                 <div className="row">
                     <div className="col-4">
                         <p className="h-4">{`${itemsSize === 0 ? 0 :  startIdx + 1} - ${endIdx} of ${itemsSize}`}</p>

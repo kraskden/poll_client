@@ -28,15 +28,14 @@ export default class PollsDropdown extends Component {
         }
 
         let activePoll = this.props.activePoll;
-        console.log(this.props.polls)
 
         return (
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div className="dropdown">
+                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {this.makePollEntry(activePoll)}
                 </button>
 
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     {this.props.polls.map((poll) => (
                         <button className="dropdown-item" key={poll.id} onClick={() => this.props.onSelected(poll)}>
                             {this.makePollEntry(poll)}
