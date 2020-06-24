@@ -56,7 +56,7 @@ export default class VoteForm extends Component {
         e.preventDefault()
         let pollAnswer = {}
 
-        console.log(this.state.editRefs)
+        console.log(this.props.fields)
 
         for (const field of this.props.fields) {
             let ref = this.state.editRefs[field.label]
@@ -69,6 +69,7 @@ export default class VoteForm extends Component {
                     questionAns = this.getRadioValue(ref)
                     break;
                 case "checkbox":
+                    console.log("checkbox")
                     questionAns = ref.current.checked
                     break;
                 case "date":
@@ -78,7 +79,7 @@ export default class VoteForm extends Component {
                     questionAns = ref.current.value
             }
 
-            if (questionAns) {
+            if (questionAns !== null && questionAns !== "") {
                 pollAnswer[field.label] = questionAns
             }
         }

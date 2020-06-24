@@ -25,7 +25,9 @@ export default class VotePage extends Component {
             console.log("Succefully submiting")
         }).catch((err) => {
             console.log("Error " + err.status);
-        } )
+        }).finally(() => {
+            this.props.history.replace('/')
+        })
     }
 
 

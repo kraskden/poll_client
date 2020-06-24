@@ -98,7 +98,7 @@ export default class App extends Component {
                     </Route>
 
                     <Route path="/quest/:id" children={ (props) => 
-                        <VotePage id={props.match.params.id} user={this.state.user} />
+                        <VotePage id={props.match.params.id} user={this.state.user} history={props.history}/>
                     }  />
 
                 </Switch>
