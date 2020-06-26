@@ -11,7 +11,7 @@ export default class NamedTable extends Component {
             if (field.type === "DATE") {
                 console.log(item[field.name])
                 let date = new Date(item[field.name] * 1000)
-                payload = `${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`
+                payload = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
             } else {
                 payload = item[field.name]
             }

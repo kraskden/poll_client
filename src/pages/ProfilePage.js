@@ -66,7 +66,8 @@ export default class ProfilePage extends Component {
                                 </div>
                                 <div className="form-group row px-3">
                                     <label htmlFor="number">Phone Number</label>
-                                    <input type="text" className="form-control" id="number" ref={this.phone} defaultValue={user.phone}/>
+                                    <input type="tel" className="form-control" id="number" pattern="\+?[0-9]{2,20}"
+                                        ref={this.phone} defaultValue={user.phone}/>
                                 </div>
                                 <button type="submit" className="btn btn-primary px-5">Save</button>
                             </form>
