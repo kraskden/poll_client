@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+import Ws from '../net/Ws'
 import Net from '../net/Net'
 import ResponcesView from '../components/ResponcesView'
 import NavBar from '../components/NavBar'
@@ -19,9 +20,30 @@ export default class ResponcesPage extends Component {
     }
 
     componentDidMount() {
-        this.initData().then(() => {
+        this.wsClient = Ws.getClient()
 
+        this.wsClient.onConnect = () => {
+            this.wsClient.subscribe("/user/topic/answers", (msg) => {
+                if (msg.body) {
+                    this.onNewMessage(msg.body)
+                }
+            })
+            this.wsClient.subscribe("/user/topic/pollListener", () => {
+                this.initData() // Update all poll list where 
+            })
+        }
+
+        this.initData().then(() => {
+            this.wsClient.activate()
         })
+    }
+
+
+
+    componentWillUnmount() {
+        if (this.wsClient) {
+            this.wsClient.deactivate()
+        }
     }
 
     initData = async () => {
@@ -43,7 +65,8 @@ export default class ResponcesPage extends Component {
         return Net.getPolls().then((polls) => {
             let newPolls = polls.reverse()
             this.setState({
-                polls: newPolls
+                polls: newPolls,
+                pollAnswers: {}
             })
             return newPolls
         }).catch((e) => {
@@ -72,7 +95,15 @@ export default class ResponcesPage extends Component {
         })
     }
 
-
+    onNewMessage = (msg) => {
+        msg = JSON.parse(msg)
+        let masterId = this.state.polls[0].id;
+        let newAnswers = {...this.state.pollAnswers}
+        newAnswers[masterId].push(msg)
+        this.setState({
+            pollAnswers: newAnswers
+        })
+    }
 
     render() {
         if (!this.state.isLoaded) {
