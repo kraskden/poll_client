@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Net from '../net/Net'
 import VoteForm from '../components/VoteForm'
 import NavBar from '../components/NavBar'
+import { Redirect } from 'react-router-dom'
 
 export default class VotePage extends Component {
 
@@ -23,10 +24,14 @@ export default class VotePage extends Component {
     onSubmit = (data) => {
         Net.submitAnswer(this.props.id, data).then(() => {
             console.log("Succefully submiting")
+            this.props.history.push({
+                pathname: "/",
+                state: "voted"
+            })
         }).catch((err) => {
             console.log("Error " + err.status);
         }).finally(() => {
-            this.props.history.replace('/')
+            // this.props.history.replace('/')
         })
     }
 
@@ -50,9 +55,11 @@ export default class VotePage extends Component {
         if (!this.state.isLoaded) {
             return null;
         }
+
         if (this.state.errMessage) {
             return <h1>{this.state.errMessage}</h1>
         }
+
         console.log(this.state.fields);
         return (
             <div className="container">
