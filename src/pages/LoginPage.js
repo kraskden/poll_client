@@ -40,9 +40,9 @@ export default class LoginPage extends Component {
                         <img src="logo.png" style={{width: "8vh"}} alt="logo"/>
                         <form id="form-login" onSubmit={this.onSubmit}>
                             <p className="h5 mb-3 font-weight-normal mt-2">{this.state.message}</p>
-                            <label htmlFor="inputLogin" className="sr-only">Email</label>
+                            <label htmlFor="inputLogin" className="sr-only req-label">Email</label>
                                 <input type="email" id="inputLogin" ref={this.email} name="login" className="form-control mb-2" placeholder="Email" required autoFocus />
-                            <label htmlFor="inputPassword" className="sr-only">Password</label>
+                            <label htmlFor="inputPassword" className="sr-only req-label">Password</label>
                             <input type="password" id="inputPassword" ref={this.password} name="password" className="form-control mb-2" placeholder="Password" required />
                             <div className="checkbox row ml-1">
                                 <label>

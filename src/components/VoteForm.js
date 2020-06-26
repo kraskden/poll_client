@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import VoteFormField from './VoteFormField'
 
+import Field from '../model/Field'
+
 // props.fields
 // props.onSubmit
 export default class VoteForm extends Component {
@@ -109,82 +111,81 @@ export default class VoteForm extends Component {
     }
 
 
-    // render() {
+   
+}
 
-    //     let textField = new Field(1, "Text Input", "text", [], true, true)
-    //     let textRef = React.createRef()
+// Test (and not-used) class 
+// Presented fields with all possible types
+// eslint-disable-next-line
+class VoteFormTest extends Component {
+     render() {
 
-    //     let multiField = new Field(2, "Multi text field", "multitext", [], true, true)
-    //     let multiRef = React.createRef();
+        let textField = new Field(1, "Text Input", "text", [], true, true)
+        let textRef = React.createRef()
 
-    //     let radioButtons = new Field(3, "Radio Buttons.. Ohh", "radio", ["First", "Second"], true, true);
-    //     let radioRefs = [React.createRef(), React.createRef()]
+        let multiField = new Field(2, "Multi text field", "multitext", [], true, true)
+        let multiRef = React.createRef();
 
-    //     let comboboxField = new Field(4, "Some combobox (fuck this)", "combobox", ["First", "Second", "Any", "Suck"], true, true);
-    //     let comboboxRef = React.createRef()
+        let radioButtons = new Field(3, "Radio Buttons", "radio", ["First", "Second"], true, true);
+        let radioRefs = [React.createRef(), React.createRef()]
 
-    //     let checkboxField = new Field(5, "And checkbox...", "checkbox", [], true, true);
-    //     let checkboxRef = React.createRef()
+        let comboboxField = new Field(4, "Some combobox", "combobox", ["First", "Second", "Any", "Test"], true, true);
+        let comboboxRef = React.createRef()
 
-    //     let dateField = new Field(6, "Date field... Finally", "date", [], true, true);
-    //     let dateRef = React.createRef()
+        let checkboxField = new Field(5, "And checkbox...", "checkbox", [], true, true);
+        let checkboxRef = React.createRef()
 
-    //     let onSubmit = (e) => {
-    //         e.preventDefault()
-    //         let dump = {
-    //             text: textRef.current.value,
-    //             multi: multiRef.current.value,
-    //             combo: comboboxRef.current.value,
-    //             radio: this.getRadioValue(radioRefs),
-    //             checkbox: checkboxRef.current.checked,
-    //             date: dateRef.current.value
-    //         }
-    //         console.log(dump)
-    //     }
+        let dateField = new Field(6, "Date field... Finally", "date", [], true, true);
+        let dateRef = React.createRef()
 
-    //     return (
-    //         <div className="card mt-4">
-    //             <div class="card-header h5">
-    //                 Vote
-    //             </div>
-    //             <div class="card-body">
-    //                 <form onSubmit={onSubmit}>
-    //                     <div class="form-group row px-3">
-    //                         <label for="firstName">First name</label>
-    //                         <input type="text" class="form-control" id="firstName" ref={this.firstName}  />
-    //                     </div>
-    //                     <VoteFormField 
-    //                         field={textField}
-    //                         fieldRef={textRef}
-    //                     />
-    //                     <VoteFormField 
-    //                         field={multiField}
-    //                         fieldRef={multiRef}
-    //                     />
-    //                     <VoteFormField 
-    //                         field={radioButtons}
-    //                         fieldRef={radioRefs}
-    //                     />
-    //                     <VoteFormField 
-    //                         field={comboboxField}
-    //                         fieldRef={comboboxRef}
-    //                     />
-    //                     <VoteFormField 
-    //                         field={checkboxField}
-    //                         fieldRef={checkboxRef}
-    //                     />
-    //                     <VoteFormField 
-    //                         field={dateField}
-    //                         fieldRef={dateRef}
-    //                     />
-    //                     <div class="form-group row px-3">
-    //                         <label for="secondName">Last name</label>
-    //                         <input type="text" class="form-control" id="secondName" ref={this.lastName}  />
-    //                     </div>
-    //                     <button type="submit" className="btn btn-primary px-5">Save</button>
-    //                 </form>
-    //             </div>
-    //         </div>
-    //     )
-    // }
+        let onSubmit = (e) => {
+            e.preventDefault()
+            let dump = {
+                text: textRef.current.value,
+                multi: multiRef.current.value,
+                combo: comboboxRef.current.value,
+                radio: this.getRadioValue(radioRefs),
+                checkbox: checkboxRef.current.checked,
+                date: dateRef.current.value
+            }
+            console.log(dump)
+        }
+
+        return (
+            <div className="card mt-4">
+                <div class="card-header h5">
+                    Vote
+                </div>
+                <div class="card-body">
+                    <form onSubmit={onSubmit}>
+                        <VoteFormField 
+                            field={textField}
+                            fieldRef={textRef}
+                        />
+                        <VoteFormField 
+                            field={multiField}
+                            fieldRef={multiRef}
+                        />
+                        <VoteFormField 
+                            field={radioButtons}
+                            fieldRef={radioRefs}
+                        />
+                        <VoteFormField 
+                            field={comboboxField}
+                            fieldRef={comboboxRef}
+                        />
+                        <VoteFormField 
+                            field={checkboxField}
+                            fieldRef={checkboxRef}
+                        />
+                        <VoteFormField 
+                            field={dateField}
+                            fieldRef={dateRef}
+                        />
+                        <button type="submit" className="btn btn-primary px-5">Save</button>
+                    </form>
+                </div>
+            </div>
+        )
+    }
 }

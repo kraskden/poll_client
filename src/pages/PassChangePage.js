@@ -47,15 +47,15 @@ export default class PassChangePage extends Component {
                         <div className="card-body">
                             <form action="" onSubmit={this.onSumbit}>
                                 <div className="form-group row px-3">
-                                    <label htmlFor="currPass">Current Password<span className="text-danger">*</span></label>
+                                    <label htmlFor="currPass" className="req-label">Current Password</label>
                                     <input type="password" className="form-control" id="currPass" ref={this.currPassword} required/>
                                 </div>
                                 <div className="form-group row px-3">
-                                    <label htmlFor="newPass">New Password<span className="text-danger">*</span></label>
+                                    <label htmlFor="newPass" className="req-label">New Password</label>
                                     <input type="password" className="form-control" id="newPass" ref={this.newPassword} required/>
                                 </div>
                                 <div className="form-group row px-3">
-                                    <label htmlFor="newConfPass">Confirm New Password<span className="text-danger">*</span></label>
+                                    <label htmlFor="newConfPass" className="req-label">Confirm New Password</label>
                                     <input type="password" className="form-control" id="newConfPass" ref={this.confirmNewPass} required/>
                                 </div>
                                 <button type="submit" className="btn btn-primary px-3">CHANGE</button>

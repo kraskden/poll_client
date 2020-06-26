@@ -49,8 +49,6 @@ export default class FieldForm extends Component {
             console.log("Error updating")
         }).finally(() => {
             document.getElementById("btn-cancel").click() //close modal form
-            //$("#AddFieldModal").modal('dispose')
-            //document.getElementById("AddFieldModal").modal("dispose")
         })
     }
 
@@ -93,16 +91,16 @@ export default class FieldForm extends Component {
     
             <div className="modal-body">
                 <div className="form-group row">
-                    <label htmlFor="inputLabel" className="col-sm-3 col-form-label">Label</label>
+                    <label htmlFor="inputLabel" className="col-sm-3 col-form-label req-label">Label</label>
                     <div className="col-sm-9">
-                        <input type="text" className="form-control" id="inputLabel" defaultValue={field.label} ref={this.labelRef}/>
+                        <input type="text" className="form-control" id="inputLabel" defaultValue={field.label} ref={this.labelRef} required/>
                     </div>
                 </div>
     
                 <div className="form-group row">
-                    <label htmlFor="inputType" className="col-sm-3 col-form-label">Type</label>
+                    <label htmlFor="inputType" className="col-sm-3 col-form-label req-label">Type</label>
                     <div className="col-sm-9">
-                        <select className="custom-select" id="inputType" ref={this.typeRef}>
+                        <select className="custom-select" id="inputType" ref={this.typeRef} required>
                             {typeSelectOptions}
                         </select>
                     </div>

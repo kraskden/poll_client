@@ -84,19 +84,21 @@ export default class VoteFormField extends Component {
     }
 
 
-    makeFormRowWrapper = (input) => {
+    makeFormRowWrapper = (input, isReq = false) => {
+        let labelClass = isReq ? "req-label" : ""
         return (
-            <div class="form-group row px-3">
-                <label for={this.htmlId}>{this.props.field.label}</label>
+            <div class={`form-group row px-3`}>
+                <label for={this.htmlId} className={labelClass}>{this.props.field.label}</label>
                 {input}
             </div>
         )
     }
 
-    makeRadioWrapper = (radioInput) => {
+    makeRadioWrapper = (radioInput, isReq = false) => {
+        let labelClass = isReq ? "req-label" : ""
         return (
             <div className="mb-2">
-                <label>{this.props.field.label}</label>
+                <label className={labelClass}>{this.props.field.label}</label>
                 <br />
                 {radioInput}
             </div>
@@ -120,19 +122,19 @@ export default class VoteFormField extends Component {
 
         switch (field.type) {
             case "text":
-                return this.makeFormRowWrapper(React.createElement("input", {...baseProps, type: "text"}))
+                return this.makeFormRowWrapper(React.createElement("input", {...baseProps, type: "text"}), field.isRequired)
             case "multitext":
-                return this.makeFormRowWrapper(React.createElement("textarea", {...baseProps, rows: 3}))
+                return this.makeFormRowWrapper(React.createElement("textarea", {...baseProps, rows: 3}), field.isRequired)
             case "radio":
-                return this.makeRadioWrapper(this.makeRadio(baseProps))
+                return this.makeRadioWrapper(this.makeRadio(baseProps), field.isRequired)
             case "combobox":
-                return this.makeFormRowWrapper(this.makeSelect(field.isEnabled, field.isRequired))
+                return this.makeFormRowWrapper(this.makeSelect(field.isEnabled, field.isRequired), field.isRequired)
             case "checkbox":
                 return <div className="mb-3">{this.makeCheckbox(baseProps)}</div>
             case "date":
-                return this.makeFormRowWrapper(React.createElement("input", {...baseProps, type: "date"}))
+                return this.makeFormRowWrapper(React.createElement("input", {...baseProps, type: "date"}), field.isRequired)
             default:
-                return this.makeFormRowWrapper(React.createElement("input"))
+                return this.makeFormRowWrapper(React.createElement("input"), field.isRequired)
         }
     }
 

@@ -61,7 +61,7 @@ export default class ProfilePage extends Component {
                                     <input type="text" className="form-control" id="secondName" ref={this.lastName} defaultValue={user.lastName} />
                                 </div>
                                 <div className="form-group row px-3">
-                                    <label htmlFor="email">Email<span className="text-danger">*</span></label>
+                                    <label htmlFor="email" className="req-label">Email</label>
                                     <input type="text" className="form-control" id="email" ref={this.email} defaultValue={user.email} required/>
                                 </div>
                                 <div className="form-group row px-3">

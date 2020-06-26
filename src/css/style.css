@@ -3,3 +3,8 @@
   display: flex;
   align-items: center;
 }
+
+.req-label:after {
+  content:" *";
+  color:red;
+}
