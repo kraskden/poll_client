@@ -16,6 +16,14 @@ export default class HomePage extends Component {
         let state = this.props.location.state
         console.log(state)
 
+        if (this.props.user) {
+            content = (
+                <div class="alert alert-primary mt-3" role="alert">
+                    Your poll located  <a href={`/quest/${this.props.user.id}`} class="alert-link">here</a>. Share it!
+                </div>
+            )
+        }
+
         if (state === "voted") {
             content = (
                 <div className="row justify-content-center">
@@ -37,13 +45,7 @@ export default class HomePage extends Component {
             )
         }
 
-        if (this.props.user) {
-            content = (
-                <div class="alert alert-primary mt-3" role="alert">
-                    Your poll located  <a href={`/quest/${this.props.user.id}`} class="alert-link">here</a>. Share it!
-                </div>
-            )
-        }
+
         
         return (
             <div className="container">

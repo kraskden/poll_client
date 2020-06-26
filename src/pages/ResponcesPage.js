@@ -35,6 +35,8 @@ export default class ResponcesPage extends Component {
 
         this.initData().then(() => {
             this.wsClient.activate()
+        }).catch(() => {
+            this.props.history.replace('/login')
         })
     }
 

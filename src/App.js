@@ -14,7 +14,6 @@ import SignupPage from './pages/SignupPage'
 import ProfilePage from './pages/ProfilePage'
 import PassChangePage from './pages/PassChangePage'
 
-import NavBar from './components/NavBar'
 import FieldsPage from './pages/FieldsPage'
 
 import Net from './net/Net'
@@ -84,7 +83,7 @@ export default class App extends Component {
 
                     <Route exact path="/setPassword" children={ (props) => 
                         this.state.user ? 
-                        <PassChangePage user={this.state.user} /> : 
+                        <PassChangePage user={this.state.user} history={props.history}/> : 
                         <Redirect to="/login" />
                     } />
                 
@@ -102,7 +101,7 @@ export default class App extends Component {
 
                     <Route exact path="/responces" children={ (props) => 
                         this.state.user ? 
-                        <ResponcesPage user={this.state.user} /> : 
+                        <ResponcesPage user={this.state.user} history={props.history}/> : 
                         <Redirect to="/login" />
                     } />
 

@@ -66,7 +66,8 @@ export default class SignupPage extends Component {
                                 <input type="password" name="password" ref={this.confirmPassword} className="form-control mb-2" placeholder="Confirm password" required />
                                 <input type="text" name="firstName" ref={this.firstName} className="form-control mb-2" placeholder="First name" />
                                 <input type="text" name="lastName" ref={this.lastName} className="form-control mb-2" placeholder="Last name" />
-                                <input type="tel" name="phoneNumber" ref={this.phone}  className="form-control mb-2" placeholder="Phone number" />
+                                <input type="tel" name="phoneNumber" pattern="\+?[0-9]{2,20}"
+                                    ref={this.phone}  className="form-control mb-2" placeholder="Phone number" />
                                 <button className="btn  btn-primary btn-block mb-4" type="submit">Sign Up</button>
                                 <p className="d-inline">Already have account?</p> <Link to="/login">Log in</Link> 
                             </form>

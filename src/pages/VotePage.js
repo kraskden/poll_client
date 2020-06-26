@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import Net from '../net/Net'
 import VoteForm from '../components/VoteForm'
 import NavBar from '../components/NavBar'
-import { Redirect } from 'react-router-dom'
 
 export default class VotePage extends Component {
 
